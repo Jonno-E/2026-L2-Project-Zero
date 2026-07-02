@@ -47,7 +47,6 @@ def string_checker(question, valid_ans_list, num_letters):
 
 
 yes_no = ['yes', 'no']
-calculation_list = ['area', 'perimeter']
 shape_list = ['rectangle', 'circle', 'triangle', 'parallelogram']
 
 # Main Routine goes here
@@ -65,5 +64,3 @@ elif want_instructions == "no":
 
 shape = string_checker("What shape would you like to calculate? ", shape_list, 3)
 
-calc_type = string_checker("Calculation type: ", calculation_list, 2)
-print(f"You chose {calc_type}")
