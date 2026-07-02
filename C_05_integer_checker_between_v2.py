@@ -1,27 +1,16 @@
 # Functions go here
-def num_check(question, num_type, exit_code=None):
-    """Checks users enter an integer / float that is more than
-    zero (or the optional exit code)"""
+def int_check(question, low, high):
+    """Checks users enter an integer between two values"""
 
-    if num_type == "integer":
-        error = "Oops - please enter an integer more than zero"
-        change_to = int
-    else:
-        error = "Oops - please enter a number more than zero."
-        change_to = float
+    error = f"Oops - please enter an integer between {low} and {high}"
 
     while True:
-        response = input(question).lower()
-
-        # check for the exit code
-        if response == exit_code:
-            return response
 
         try:
             # Change the response to an integer and check that it's more than zero
-            response = change_to(response)
+            response = int(input(question))
 
-            if response > 0:
+            if low <= response <= high:
                 return response
             else:
                 print(error)
@@ -36,12 +25,6 @@ def num_check(question, num_type, exit_code=None):
 while True:
     print()
 
-    my_float = num_check("Please enter a number more than 0: ", "float")
-    print(f"Thanks. You chose {my_float}")
-    print()
-    my_int = num_check("Please enter an integer more than 0: ",
-                       "integer", "")
-    if my_int == "":
-        print("You have chosen infinite mode")
-    else:
-        print(f"Thanks. You chose {my_int}")
+    # ask user for an integer
+    my_num = int_check("Choose a number more than zero: ", 1, 10)
+    print(f"You chose {my_num}")
