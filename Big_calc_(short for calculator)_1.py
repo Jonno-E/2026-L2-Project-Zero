@@ -15,7 +15,6 @@ def make_statement(statement, decoration, lines=1):
         print(middle)
     elif lines == 2:
         print(middle)
-
     else:
         print(top_bottom)
         print(middle)
@@ -73,7 +72,7 @@ yes_no = ['yes', 'no']
 shape_list = ['square', 'rectangle', 'circle', 'triangle', 'parallelogram']
 
 
-# Main Routine goes here
+# Main Routine starts here
 print()
 make_statement("Area | Perimeter Calculator", "-", 3)
 print()
@@ -128,7 +127,7 @@ if shape == shape_list[3]:
     print(f'The area of the triangle is {area}')
     print(f'The perimeter of the triangle is {perimeter}')
 
-# Parallelogram\
+# Parallelogram
 if shape == shape_list[4]:
     base = int_check("enter the base of your shape: ", 0.1, 100)
     side = int_check("enter the side of your shape: ", 0.1, 100)

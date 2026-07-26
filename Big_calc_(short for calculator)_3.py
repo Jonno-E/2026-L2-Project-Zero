@@ -71,6 +71,7 @@ def string_checker(question, valid_ans_list):
 yes_no = ['yes', 'no']
 shape_list = ['square', 'rectangle', 'circle', 'triangle', 'parallelogram']
 exit_code = ["continue", "exit"]
+history = []
 
 # Main Routine starts here
 print()
@@ -95,6 +96,7 @@ while True:
         height = int_check("Enter the height of your shape: ", 0.1, 100)
         area = height * height
         perimeter = height * 4
+        history.append([shape, area, perimeter])
         print(f"The area of the square is {area}")
         print(f"The perimeter of the square is {perimeter}")
 
@@ -104,6 +106,7 @@ while True:
         length = int_check("Enter the length of your shape: ", 0.1, 100)
         area = height * length
         perimeter = 2 * height + 2 * length
+        history.append([shape, area, perimeter])
         print(f"The area of the rectangle is {area}")
         print(f"The perimeter of the rectangle is {perimeter}")
 
@@ -112,6 +115,7 @@ while True:
         radius = int_check("Enter the radius of your shape: ", 0.1, 100)
         area = math.pi * radius ** 2
         circumference = 2 * math.pi * radius
+        history.append([shape, area, circumference])
         print(f"The area of the circle is {area}")
         print(f"The perimeter of the circle is {circumference}")
 
@@ -123,6 +127,7 @@ while True:
         side_3 = int_check("Enter the side 3 of your shape: ", 0.1, 100)
         area = 0.5 * side_1 * height
         perimeter = side_1 + side_2 + side_3
+        history.append([shape, area, perimeter])
         print(f"The area of the triangle is {area}")
         print(f"The perimeter of the triangle is {perimeter}")
 
@@ -133,6 +138,7 @@ while True:
         height = int_check("Enter the height of your shape: ", 0.1, 100)
         area = base * height
         perimeter = 2 * (base + side)
+        history.append([shape, area, perimeter])
         print(f"The area of the parallelogram is {area}")
         print(f"The perimeter of the parallelogram is {perimeter}")
 
@@ -141,4 +147,12 @@ while True:
 
     if continue_or_exit == "exit":
         print("\nThanks for using Big calc")
+        print("\nSummary")
+        print("-------")
+
+        for item in history:
+            print(f"Shape: {item[0]}")
+            print(f"Area: {item[1]}")
+            print(f"Perimeter: {item[2]}")
+            print()
         break
