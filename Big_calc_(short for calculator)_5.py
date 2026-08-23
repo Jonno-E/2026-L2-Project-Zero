@@ -145,7 +145,7 @@ while True:
         perimeter = 2 * (base + side)
         history.append([shape, area, perimeter])
         print(f"\nThe area of the parallelogram is {area:.2f}")
-        print(f"The perimeter of the parallelogram is {perimeter:.2f}")`
+        print(f"The perimeter of the parallelogram is {perimeter:.2f}")
 
     # Ask user whether to continue or exit
     continue_or_exit = string_checker("\nWould you like to continue (c) or exit (e)? ", exit_code)
