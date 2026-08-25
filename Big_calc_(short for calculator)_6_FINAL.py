@@ -67,6 +67,13 @@ def string_checker(question, valid_ans_list):
         print(f"Please choose an option from {valid_ans_list}")
 
 
+def record_result(shape_name, area_name, measure, measure_label="perimeter"):
+    """Save a calculation to history and print the results."""
+    history.append([shape_name, area_name, measure])
+    print(f"\nThe area of the {shape_name} is {area_name:.2f}")
+    print(f"The {measure_label} of the {shape_name} is {measure:.2f}")
+
+
 # Lists used for string checker and storing calculation history
 yes_no = ['yes', 'no']
 shape_list = ['square', 'rectangle', 'circle', 'triangle', 'parallelogram']
@@ -98,39 +105,33 @@ while True:
         "parallelogram (p))", shape_list)
 
     print(f"you chose \n{shape}\n")
-    # Square Calculation: integer checker, calculations and saving of
-    # calculation history
+
+    # Initialise variables for the shape calculations
+    measure_name = "perimeter"
+    area = 0
+    perimeter = 0
+
+    # Square Calculation: integer checker and calculations
     if shape == shape_list[0]:
         height = int_check("Enter the height of your shape: ", 0.1, 100)
         area = height * height
         perimeter = height * 4
-        history.append([shape, area, perimeter])
-        print(f"\nThe area of the square is {area:.2f}")
-        print(f"The perimeter of the square is {perimeter:.2f}")
 
-    # Rectangle Calculation: integer checkers, calculations and saving
-    # of calculation history
+    # Rectangle Calculation: integer checkers and calculations
     elif shape == shape_list[1]:
         height = int_check("Enter the height of your shape: ", 0.1, 100)
         length = int_check("Enter the length of your shape: ", 0.1, 100)
         area = height * length
         perimeter = 2 * height + 2 * length
-        history.append([shape, area, perimeter])
-        print(f"\nThe area of the rectangle is {area:.2f}")
-        print(f"The perimeter of the rectangle is {perimeter:.2f}")
 
-    # Circle Calculation: integer checker, calculations and saving of
-    # calculation history
+    # Circle Calculation: integer checker and calculations
     elif shape == shape_list[2]:
         radius = int_check("Enter the radius of your shape: ", 0.1, 100)
         area = math.pi * radius ** 2
-        circumference = 2 * math.pi * radius
-        history.append([shape, area, circumference])
-        print(f"\nThe area of the circle is {area:.2f}")
-        print(f"The circumference of the circle is {circumference:.2f}")
+        perimeter = 2 * math.pi * radius
+        measure_name = "circumference"
 
-    # Triangle Calculation: integer checkers, calculations and saving
-    # of calculation history
+    # Triangle Calculation: integer checkers and calculations
     elif shape == shape_list[3]:
         height = int_check("Enter the height of your shape: ", 0.1, 100)
         side_1 = int_check(
@@ -139,21 +140,17 @@ while True:
         side_3 = int_check("Enter the side 3 of your shape: ", 0.1, 100)
         area = 0.5 * side_1 * height
         perimeter = side_1 + side_2 + side_3
-        history.append([shape, area, perimeter])
-        print(f"\nThe area of the triangle is {area:.2f}")
-        print(f"The perimeter of the triangle is {perimeter:.2f}")
 
-    # Parallelogram Calculation: integer checkers, calculations and
-    # saving of calculation history
+    # Parallelogram Calculation: integer checkers and calculations
     elif shape == shape_list[4]:
         base = int_check("Enter the base of your shape: ", 0.1, 100)
         side = int_check("Enter the side of your shape: ", 0.1, 100)
         height = int_check("Enter the height of your shape: ", 0.1, 100)
         area = base * height
         perimeter = 2 * (base + side)
-        history.append([shape, area, perimeter])
-        print(f"\nThe area of the parallelogram is {area:.2f}")
-        print(f"The perimeter of the parallelogram is {perimeter:.2f}")
+
+    # Save and display the result - handles every shape
+    record_result(shape, area, perimeter, measure_name)
 
     # Ask user whether to continue or exit with string checker
     continue_or_exit = string_checker(
