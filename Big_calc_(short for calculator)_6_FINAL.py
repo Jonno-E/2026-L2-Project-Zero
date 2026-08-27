@@ -22,7 +22,7 @@ def make_statement(statement, decoration, lines=1):
 def instructions():
     """Print an easily executable set of instructions."""
     print("Instructions:\n\nChoose a valid shape from the list presented\n"
-          "Input the sizes asked for between 0.1 and 100,\n"
+          "Input the sizes asked for between 1 and 100,\n"
           "Choose to continue or exit.\n"
           "All answers can be the first letters of words e.g: "
           "square (s)\n")
@@ -69,7 +69,7 @@ def string_checker(question, valid_ans_list):
 
 def record_result(shape_name, area_name, measure, measure_label="perimeter"):
     """Save a calculation to history and print the results."""
-    history.append([shape_name, area_name, measure])
+    history.append([shape_name, area_name, measure, measure_label])
     print(f"\nThe area of the {shape_name} is {area_name:.2f}")
     print(f"The {measure_label} of the {shape_name} is {measure:.2f}")
 
@@ -113,39 +113,39 @@ while True:
 
     # Square Calculation: integer checker and calculations
     if shape == shape_list[0]:
-        height = int_check("Enter the height of your shape: ", 0.1, 100)
+        height = int_check("Enter the height of your shape: ", 1, 100)
         area = height * height
         perimeter = height * 4
 
     # Rectangle Calculation: integer checkers and calculations
     elif shape == shape_list[1]:
-        height = int_check("Enter the height of your shape: ", 0.1, 100)
-        length = int_check("Enter the length of your shape: ", 0.1, 100)
+        height = int_check("Enter the height of your shape: ", 1, 100)
+        length = int_check("Enter the length of your shape: ", 1, 100)
         area = height * length
         perimeter = 2 * height + 2 * length
 
     # Circle Calculation: integer checker and calculations
     elif shape == shape_list[2]:
-        radius = int_check("Enter the radius of your shape: ", 0.1, 100)
+        radius = int_check("Enter the radius of your shape: ", 1, 100)
         area = math.pi * radius ** 2
         perimeter = 2 * math.pi * radius
         measure_name = "circumference"
 
     # Triangle Calculation: integer checkers and calculations
     elif shape == shape_list[3]:
-        height = int_check("Enter the height of your shape: ", 0.1, 100)
         side_1 = int_check(
-            "Enter the side 1 / base of your shape: ", 0.1, 100)
-        side_2 = int_check("Enter the side 2 of your shape: ", 0.1, 100)
-        side_3 = int_check("Enter the side 3 of your shape: ", 0.1, 100)
-        area = 0.5 * side_1 * height
+            "Enter the side 1 / base of your shape: ", 1, 100)
+        side_2 = int_check("Enter the side 2 of your shape: ", 1, 100)
+        side_3 = int_check("Enter the side 3 of your shape: ", 1, 100)
         perimeter = side_1 + side_2 + side_3
+        s = perimeter / 2
+        area = math.sqrt(s * (s - side_1) * (s - side_2) * (s - side_3))
 
     # Parallelogram Calculation: integer checkers and calculations
     elif shape == shape_list[4]:
-        base = int_check("Enter the base of your shape: ", 0.1, 100)
-        side = int_check("Enter the side of your shape: ", 0.1, 100)
-        height = int_check("Enter the height of your shape: ", 0.1, 100)
+        base = int_check("Enter the base of your shape: ", 1, 100)
+        side = int_check("Enter the side of your shape: ", 1, 100)
+        height = int_check("Enter the height of your shape: ", 1, 100)
         area = base * height
         perimeter = 2 * (base + side)
 
@@ -160,9 +160,8 @@ while True:
     if continue_or_exit == "exit":
         print("\nThanks for using Big calc\n\nSummary\n")
 
-        # Give calculation history and exit
         for calculation in history:
             print(f"Shape: {calculation[0]}\nArea: {calculation[1]:.2f}\n"
-                  f"Perimeter (circumference for circle): "
+                  f"{calculation[3].capitalize()}: "
                   f"{calculation[2]:.2f}\n")
         break
